@@ -1,25 +1,18 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
+from analysis import *
+from ui import *
 
-# st.set_page_config(
-#     page_title='Dashboard de Segurança - CE',
-#     page_icon='🚨','
-#     layout='wide'
-# )
+st.set_page_config(layout="wide")
+st.title('🚨 Análise de Furtos no Ceará')
 
-# Decorator garante que os dados não sejam recarregado a cada iteração
-# @st.cache_data
-def carregar_dados():
-    # Carregar arquivo excel
-    # df = pd.read_excel('./Furto_2009-a-2024.xlsx')
-    # df.to_csv('Furto_2009-a-2024-Fortaleza.csv', index=False)
-    # df = df[df['Município'] == 'Fortaleza']
+# 1. Carrega os dados (usando a função do analysis.py)
+df_principal = carregar_dados()
 
-    df = pd.read_csv('./Furto_2009-a-2024-Fortaleza.csv')
-    AIS_fortaleza = ['AIS 01', 'AIS 02', 'AIS 03', 'AIS 04', 'AIS 05', 'AIS 06', 'AIS 07', 'AIS 08', 'AIS 09', 'AIS 10']
-    df = df[df['AIS'].any(AIS_fortaleza)]
-    print(df)
+# 2. Renderiza a interface (usando as funções do ui.py)
+ano_selecionado = renderizar_sidebar(df_principal)
 
-carregar_dados()
+# 3. Aplica os filtros e mostra os resultados
+df_filtrado = df_principal[df_principal['Ano'] == ano_selecionado]
 
+renderizar_grafico_furtos_mes(df_filtrado)
+# ...outras visualizações...
