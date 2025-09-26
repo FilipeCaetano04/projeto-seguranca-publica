@@ -1,5 +1,7 @@
 import pandas as pd
+import streamlit as st
 
+@st.cache_data
 def carregar_dados():
     # Carregar arquivo excel
     # df = pd.read_excel('./Furto_2009-a-2024.xlsx')
@@ -9,7 +11,6 @@ def carregar_dados():
     # df = df[df['Município'] == 'Fortaleza']
     # df.to_csv('Furto_2009-a-2024-Fortaleza.csv', index=False)
 
-    
     df = pd.read_csv('./Furto_2009-a-2024-Fortaleza.csv')
     
     # Definindo as AIS de Fortaleza para retirar AIS não identificadas do conjunto de dados
@@ -18,6 +19,8 @@ def carregar_dados():
     # Filtrando com base nas AIS definidas 
     df = df[df.AIS.isin(AIS_fortaleza)]
     
-    df['Data'] = df['Data'].to_timestamp()
+    df['Data'] = pd.to_datetime(df['Data'])
+    df['Ano'] = df['Data'].dt.year
+    df['Mês'] = df['Data'].dt.month
 
-carregar_dados()
+    return df

@@ -3,7 +3,7 @@ from analysis import *
 from ui import *
 
 st.set_page_config(layout="wide")
-st.title('🚨 Análise de Furtos no Ceará')
+st.title('🚨 Análise de Furtos em Fortaleza')
 
 # 1. Carrega os dados (usando a função do analysis.py)
 df_principal = carregar_dados()
@@ -15,4 +15,3 @@ ano_selecionado = renderizar_sidebar(df_principal)
 df_filtrado = df_principal[df_principal['Ano'] == ano_selecionado]
 
 renderizar_grafico_furtos_mes(df_filtrado)
-# ...outras visualizações...
