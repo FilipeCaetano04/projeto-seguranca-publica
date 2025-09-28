@@ -11,7 +11,7 @@ def carregar_dados():
     # df = df[df['Município'] == 'Fortaleza']
     # df.to_csv('Furto_2009-a-2024-Fortaleza.csv', index=False)
 
-    df = pd.read_csv('./Furto_2009-a-2024-Fortaleza.csv')
+    df = pd.read_csv('./dados/Furto_2009-a-2024-Fortaleza.csv')
     
     # Definindo as AIS de Fortaleza para retirar AIS não identificadas do conjunto de dados
     AIS_fortaleza = ['AIS 01', 'AIS 02', 'AIS 03', 'AIS 04', 'AIS 05', 'AIS 06', 'AIS 07', 'AIS 08', 'AIS 09', 'AIS 10']
