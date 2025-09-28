@@ -20,8 +20,8 @@ df_filtrado = df_principal[df_principal['Ano'] == ano_selecionado]
 # 4. Mapa de calor por AIS
 renderizar_mapa_calor_ais(
     df_filtrado,
-    "dados/Bairros_de_Fortaleza.geojson",
-    "dados/bairro_para_ais.csv"
+    "./dados/Bairros_de_Fortaleza.geojson",
+    "./dados/bairro_para_ais.csv"
 )
 
 # 5. Gráfico mensal
