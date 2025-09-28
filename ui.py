@@ -6,8 +6,6 @@ import json
 import streamlit as st
 import plotly.express as px
 
-
-
 def renderizar_mapa_calor_ais(df_furtos, geojson_bairros, csv_bairro_ais):
     st.subheader("📍 Mapa de Insegurança por AIS em Fortaleza")
 
