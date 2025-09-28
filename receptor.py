@@ -7,6 +7,8 @@ BROKER_ADDRESS = "broker.hivemq.com"
 BROKER_PORT = 1883
 TOPIC = "gov/seguranca"
 
+banco_de_dados = './Furto_2009-a-2024-Fortaleza.csv' #CSV
+
 
 #Conectando
 def on_connect(client, userdata, flags, rc, properties=None):
@@ -30,13 +32,19 @@ def on_connect(client, userdata, flags, rc, properties=None):
 def on_message(client, userdata, msg):
     
 
-    #
     mensagem_recebida = msg.payload.decode("utf-8")
     print("-" * 30)
     print(f"Mensagem recebida!")
-    print(f"  Tópico: {msg.topic}")
     print(f"  Mensagem: {mensagem_recebida}")
     print("-" * 30)
+    mensagem_recebida = mensagem_recebida + "\n"
+
+    with open(banco_de_dados, "a") as file:
+        file.write(mensagem_recebida)
+        file.close()
+
+
+
 
 
 
@@ -46,7 +54,7 @@ client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect = on_connect
 client.on_message = on_message
 
-print("A tentar conectar-se ao broker MQTT...")
+print("Tentando se conectar ao broker MQTT...")
 
 
 try:

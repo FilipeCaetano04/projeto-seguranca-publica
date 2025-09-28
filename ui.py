@@ -5,7 +5,7 @@ import pandas as pd
 import json
 import streamlit as st
 import plotly.express as px
-
+import time 
 
 
 def renderizar_mapa_calor_ais(df_furtos, geojson_bairros, csv_bairro_ais):
