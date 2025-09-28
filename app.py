@@ -26,4 +26,3 @@ renderizar_mapa_calor_ais(
 
 # 5. Gráfico mensal
 renderizar_grafico_furtos_mes(df_filtrado)
-
